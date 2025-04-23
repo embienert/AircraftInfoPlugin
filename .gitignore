@@ -436,7 +436,6 @@ FodyWeavers.xsd
 
 .vs/*
 Debug/*
-Release/*
 x64/*
 AircraftInfoPlugin/Debug/*
 AircraftInfoPlugin/Release/*
