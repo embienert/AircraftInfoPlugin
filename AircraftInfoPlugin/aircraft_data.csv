@@ -221,6 +221,7 @@ E3CF;Boeing;E-3D Sentry;E-3D Sentry;Landplane;H;151.955;44.4;Lower Heavy;150;220
 E3TF;Boeing;E-3 Sentry;E-3 Sentry;Landplane;H;156;44.4;Lower Heavy;150;2000
 A50P;Embraer;Embraer 500, Phenom 100;Embraer-500;Landplane;L;4.75;12.3;Light;120;3500
 E55P;Embraer;Embraer 505, Phenom 300;Embraer-505;Landplane;M;7.951;16.2;Light;115;4000
+EC25;Eurocopter;Eurocopter EC-125;Eurocopter-125;Helicopter;L;2.15;10.69;-;-;-
 EC35;Eurocopter;Eurocopter EC-135;Eurocopter-135;Helicopter;L;2.95;10.2;Light;5;1500
 EC45;Eurocopter;Eurocopter EC-145;Eurocopter-145;Helicopter;L;3.6;10.8;-;-;1590
 EH10;AgustaWestland;AW101 Merlin;AW-101;Helicopter;M;15.6;18.6;Light;50;1300
@@ -288,6 +289,7 @@ K35E;Boeing;KC-135, Stratotanker;Stratotanker;Landplane;H;134.72;39.9;Lower Heav
 K35R;Boeing;KC-135, Stratotanker;Stratotanker;Landplane;H;146.285;39.9;Lower Heavy;135;2500
 KA50;Kamov;KA-50, Black Shark;Black Shark;Helicopter;M;10.8;14.5;Light;60;2000
 KA52;Kamov;KA-52, Alligator;Alligator;Helicopter;M;10.8;14.5;Light;40;1900
+KODI;Quest;Kodiak;Kodiak;Landplane;L;3.291;13.72;-;-;-
 L101;Lockheed;L-1011 TriStart;TriStar;Landplane;H;195.04;47.4;Lower Heavy;140;2000
 L159;Aero;L-159;L-159;Landplane;M;8;9.5;Light;130;10000
 L188;Lockheed;Electra;Electra;Landplane;M;51.25;30.2;Lower Medium;130;1500
