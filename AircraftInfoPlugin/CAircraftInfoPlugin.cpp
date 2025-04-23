@@ -9,7 +9,7 @@ using namespace std;
 
 
 const char* PLUGIN_NAME			= "Aircraft Info Plugin";
-const char* PLUGIN_VERSION		= "1.4";
+const char* PLUGIN_VERSION		= "1.5";
 const char* PLUGIN_AUTHOR		= "Martin Bienert";
 const char* PLUGIN_COPYRIGHT	= "Free to be distributed as source code";
 
