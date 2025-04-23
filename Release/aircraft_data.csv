@@ -374,6 +374,7 @@ SB39;Saab;Saab 39, Gripen;Saab Gripen;Landplane;M;14;8.4;Light;120;50000
 SBR2;Rockwell;NA-265 Sabre 75;Rockwell Sabre;Landplane;M;10.43;13.6;Light;140;4700
 SC7;Short;SC-7 Skyvan, Skyliner;Skyliner;Landplane;L;5.67;19.8;Light;90;1200
 SF34;Saab;Saab 340;Saab 340;Landplane;M;12.9;21.4;Light;115;1800
+SF50;Cirrus;VisionJet;VisionJet;Landplane;L;2.72;11.7;-;95;-
 SH33;Short;Short C-23;Short C-23;Landplane;M;10.25;22.8;Light;100;1000
 SH36;Short;SD3-360;SD3-360;Landplane;M;12.3;22.8;Light;100;1000
 SR20;Cirrus;Cirrus SR20;SR-20;Landplane;L;1.361;11.68;Light;65;830
