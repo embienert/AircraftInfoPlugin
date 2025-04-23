@@ -15,11 +15,12 @@ loaded as you left it when starting Euroscope.
 ## Euroscope Commands
 All commands start with the prefix `.aip`, for **A**ircraft **I**nformation **P**lugin
 
-| Command       | Description                               |
-|---------------|-------------------------------------------|
-| `.aip`        | Show current plugin status                |
-| `.aip help`   | Show quick overview of available commands |
-| `.aip show`   | Show the aircraft info list, if hidden    |
-| `.aip hide`   | Hide the aircraft info list, if shown     |
-| `.aip reload` | Reload the aircraft database file         |
+| Command              | Description                                                                      |
+|----------------------|----------------------------------------------------------------------------------|
+| `.aip`               | Show current plugin status                                                       |
+| `.aip help`          | Show quick overview of available commands                                        |
+| `.aip show`          | Show the aircraft info list, if hidden                                           |
+| `.aip hide`          | Hide the aircraft info list, if shown                                            |
+| `.aip reload`        | Reload the aircraft database file                                                |
+| `.aip lookup [ICAO]` | Look up and show the available information for aircraft with the given ICAO code |
 

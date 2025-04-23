@@ -64,7 +64,7 @@ const bool COLUMN_CENTER_INITIAL_CLIMB_RATE		= false;
 
 
 void CAircraftInfoPlugin::sendMessage(string message) {
-	DisplayUserMessage("AIP", "AIP", message.c_str(), true, true, false, true, false);
+	DisplayUserMessage("AIP", "", message.c_str(), true, true, false, true, false);
 }
 
 
@@ -303,10 +303,12 @@ bool CAircraftInfoPlugin::OnCompileCommand(const char* sCommandLine) {
 
 	if (strcmp(cmd.c_str(), "HELP") == 0) {
 		sendMessage("The following subcommands are available:");
-		sendMessage("HELP   - Show this info");
-		sendMessage("SHOW   - Show the aircraft info list, if hidden");
-		sendMessage("HIDE   - Hide the aircraft info list, if shown");
-		sendMessage("RELOAD - Reload the aircraft database file");
+		sendMessage("HELP          - Show this info");
+		sendMessage("SHOW          - Show the aircraft info list, if hidden");
+		sendMessage("HIDE          - Hide the aircraft info list, if shown");
+		sendMessage("RELOAD	        - Reload the aircraft database file");
+		sendMessage("LOOKUP [ICAO] - Look up and show the available information for aircraft with the given ICAO code");
+
 		return true;
 	}
 	
@@ -326,6 +328,39 @@ bool CAircraftInfoPlugin::OnCompileCommand(const char* sCommandLine) {
 			sendMessage("Success!");
 		}
 
+		return true;
+	}
+
+	if (strncmp(cmd.c_str(), "LOOKUP", 6) == 0) {
+		if (strlen(cmd.c_str()) < 8) {
+			sendMessage("lookup needs an aircraft ICAO");
+			return true;
+		}
+
+		string icao = cmd.substr(7);
+		try {
+			transform(cmd.begin(), cmd.end(), cmd.begin(), ::toupper);
+		} catch (...) {
+			return false;
+		}
+
+		auto info = AircraftData::lookupIcao(icao);
+		string gotIcao = AircraftData::getIcao(info);
+
+		if (icao == gotIcao) {
+			sendMessage("ICAO:     " + gotIcao);
+			sendMessage("WTC:      " + AircraftData::getWtc(info));
+			sendMessage("Recat-EU: " + AircraftData::getRecat(info));
+			sendMessage("MTOW:     " + AircraftData::getMtow(info));
+			sendMessage("Wingspan: " + AircraftData::getWingspan(info));
+			sendMessage("Type:     " + AircraftData::getType(info));
+			sendMessage("FAS:      " + AircraftData::getFinalSpeed(info));
+			sendMessage("IROC:     " + AircraftData::getInitialRoc(info));
+			sendMessage("Name:     " + AircraftData::getShortName(info));
+		} else {
+			sendMessage("Could not find entry for ICAO '" + icao + "'");
+		}
+		
 		return true;
 	}
 
