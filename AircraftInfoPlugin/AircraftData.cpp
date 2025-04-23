@@ -232,6 +232,27 @@ string AircraftData::getInitialRoc(map<string, string> info) {
 	return info[cInitialRoc];
 }
 
+string AircraftData::getARC2(map<string, string> info) {
+	// NOTE: For now the ARC2 is only calculated using the wingspan, completely disregarding main gear wheel span
+	string wingspanString = getWingspan(info);
+
+	double wingspan;
+	try {
+		wingspan = stod(wingspanString);
+	} catch (...) {
+		return defaultString;
+	}
+	
+	if (wingspan < 15) return "A";
+	if (wingspan < 24) return "B";
+	if (wingspan < 36) return "C";
+	if (wingspan < 52) return "D";
+	if (wingspan < 65) return "E";
+	if (wingspan < 80) return "F";
+
+	return defaultString;
+}
+
 string AircraftData::getLoadedDatabase() {
 	if (hasData) return filePath().string();
 	return "not loaded";

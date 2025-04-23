@@ -34,6 +34,7 @@ public:
 	static string getRecat(map<string, string> info);
 	static string getFinalSpeed(map<string, string> info);
 	static string getInitialRoc(map<string, string> info);
+	static string getARC2(map<string, string> info);
 
 	static string getLoadedDatabase();
 	static bool reload();

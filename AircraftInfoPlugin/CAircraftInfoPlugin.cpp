@@ -25,6 +25,7 @@ const int TAG_ITEM_TYPE_AIRCRAFT_TYPE	= 1007;
 const int TAG_ITEM_TYPE_RECAT_EU		= 1008;
 const int TAG_ITEM_TYPE_FINAL_SPEED		= 1009;
 const int TAG_ITEM_TYPE_INITIAL_ROC		= 1010;
+const int TAG_ITEM_TYPE_ARC2			= 1011;
 
 const char* COLUMN_NAME_CALLSIGN				= "C/S";
 const char* COLUMN_NAME_ICAO					= "ICAO";
@@ -37,6 +38,7 @@ const char* COLUMN_NAME_TYPE					= "Type";
 const char* COLUMN_NAME_RECAT					= "Recat-EU";
 const char* COLUMN_NAME_FINAL_APPROACH_SPEED	= "FAS";
 const char* COLUMN_NAME_INITIAL_CLIMB_RATE		= "IROC";
+const char* COLUMN_NAME_ARC2					= "ARC2";
 
 const int COLUMN_WIDTH_CALLSIGN				= 10;
 const int COLUMN_WIDTH_ICAO					= 6;
@@ -49,6 +51,7 @@ const int COLUMN_WIDTH_TYPE					= 12;
 const int COLUMN_WIDTH_RECAT				= 14;
 const int COLUMN_WIDTH_FINAL_APPROACH_SPEED = 7;
 const int COLUMN_WIDTH_INITIAL_CLIMB_RATE	= 10;
+const int COLUMN_WIDTH_ARC2					= 6;
 
 const bool COLUMN_CENTER_CALLSIGN				= false;
 const bool COLUMN_CENTER_ICAO					= false;
@@ -61,6 +64,7 @@ const bool COLUMN_CENTER_TYPE					= false;
 const bool COLUMN_CENTER_RECAT					= false;
 const bool COLUMN_CENTER_FINAL_APPROACH_SPEED	= false;
 const bool COLUMN_CENTER_INITIAL_CLIMB_RATE		= false;
+const bool COLUMN_CENTER_ARC2					= false;
 
 
 void CAircraftInfoPlugin::sendMessage(string message) {
@@ -92,10 +96,11 @@ CAircraftInfoPlugin::CAircraftInfoPlugin(void) : EuroScopePlugIn::CPlugIn(
 	RegisterTagItemType("Aircraft RECAT-EU",				TAG_ITEM_TYPE_RECAT_EU);
 	RegisterTagItemType("Aircraft Final Approach Speed",	TAG_ITEM_TYPE_FINAL_SPEED);
 	RegisterTagItemType("Aircraft Initial Rate of Climb",	TAG_ITEM_TYPE_INITIAL_ROC);
+	RegisterTagItemType("Aircraft ARC2",					TAG_ITEM_TYPE_ARC2);
 
 	// Set up list
 	m_aircraftInfoList = RegisterFpList("Aircraft Info");
-	if (m_aircraftInfoList.GetColumnNumber() != 11) {
+	if (m_aircraftInfoList.GetColumnNumber() != 12) {
 		m_aircraftInfoList.DeleteAllColumns();
 		m_aircraftInfoList.AddColumnDefinition(
 			COLUMN_NAME_CALLSIGN,	COLUMN_WIDTH_CALLSIGN, COLUMN_CENTER_CALLSIGN,
@@ -118,6 +123,12 @@ CAircraftInfoPlugin::CAircraftInfoPlugin(void) : EuroScopePlugIn::CPlugIn(
 		m_aircraftInfoList.AddColumnDefinition(
 			COLUMN_NAME_RECAT, COLUMN_WIDTH_RECAT, COLUMN_CENTER_RECAT,
 			PLUGIN_NAME, TAG_ITEM_TYPE_RECAT_EU,
+			NULL, EuroScopePlugIn::TAG_ITEM_FUNCTION_NO,
+			NULL, EuroScopePlugIn::TAG_ITEM_FUNCTION_NO
+		);
+		m_aircraftInfoList.AddColumnDefinition(
+			COLUMN_NAME_ARC2, COLUMN_WIDTH_ARC2, COLUMN_CENTER_ARC2,
+			PLUGIN_NAME, TAG_ITEM_TYPE_ARC2,
 			NULL, EuroScopePlugIn::TAG_ITEM_FUNCTION_NO,
 			NULL, EuroScopePlugIn::TAG_ITEM_FUNCTION_NO
 		);
@@ -254,6 +265,9 @@ void CAircraftInfoPlugin::OnGetTagItem(
 	case TAG_ITEM_TYPE_MTOW:
 		snprintf(sItemString, 15, "%st", AircraftData::getMtow(info).c_str());
 		break;
+	case TAG_ITEM_TYPE_ARC2:
+		strncpy(sItemString, AircraftData::getARC2(info).c_str(), 15);
+		break;
 	case TAG_ITEM_TYPE_WINGSPAN:
 		snprintf(sItemString, 15, "%sm", AircraftData::getWingspan(info).c_str());
 		break;
@@ -348,15 +362,18 @@ bool CAircraftInfoPlugin::OnCompileCommand(const char* sCommandLine) {
 		string gotIcao = AircraftData::getIcao(info);
 
 		if (icao == gotIcao) {
+			sendMessage("--------------------------");
 			sendMessage("ICAO:     " + gotIcao);
 			sendMessage("WTC:      " + AircraftData::getWtc(info));
 			sendMessage("Recat-EU: " + AircraftData::getRecat(info));
+			sendMessage("ARC2:     " + AircraftData::getARC2(info));
 			sendMessage("MTOW:     " + AircraftData::getMtow(info));
 			sendMessage("Wingspan: " + AircraftData::getWingspan(info));
 			sendMessage("Type:     " + AircraftData::getType(info));
 			sendMessage("FAS:      " + AircraftData::getFinalSpeed(info));
 			sendMessage("IROC:     " + AircraftData::getInitialRoc(info));
 			sendMessage("Name:     " + AircraftData::getShortName(info));
+			sendMessage("--------------------------");
 		} else {
 			sendMessage("Could not find entry for ICAO '" + icao + "'");
 		}
