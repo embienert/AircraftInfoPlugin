@@ -320,7 +320,7 @@ MG21;Mikoyan;Fishbed;Fishbed;Landplane;M;9.1;7.1;Light;175;7000
 MG23;Mikoyan;MiG-23/27;MiG-23;Landplane;M;17.8;14;Lower Medium;157;45000
 MG25;Mikoyan;MiG-25;MiG-25;Landplane;M;36.72;14.02;Lower Medium;185;41000
 MG29;Mikoyan;MiG-29/33;MiG-29;Landplane;M;21;11.4;Lower Medium;140;65000
-MG31;Mikoyan;MiG-31;Mig-31;Landplane;M;46.2;13.5;Lower Medium;170;10000
+MG31;Mikoyan;MiG-31;MiG-31;Landplane;M;46.2;13.5;Lower Medium;170;10000
 MI2;PZL-MIELEC;Mil Mi-2 Hoplite;Hoplite;Helicopter;L;3.7;14.5;Light;30;900
 MI8;Kazan;Mil Mi-8 Hip;Hip;Helicopter;M;12;21.29;Light;40;700
 MIR2;DAssault;Mirage 2002;Mirage 2000;Landplane;M;17;9.1;Lower Medium;125;55000
@@ -330,9 +330,9 @@ N262;Aerospatiale;Frakes Mohawk 298;Mohawk 298;Landplane;M;10.6;21.9;Light;90;15
 NH90;NH Industries;NH90;NH-90;Helicopter;M;10.6;16.3;Light;15;1600
 NIM;Bae Systems;Nimrod;Nimrod;Landplane;M;85.18;35.1;Upper Medium;150;1800
 P180;Piaggio;Avanti;Piaggio Avanti;Landplane;L;5.24;14;Light;120;3000
-P28A;Piper;PA-28-140/161, Archer, Cherokee;Piper Cherokee;Landplane;L;1.1;10.7;Light;65;700
+P28A;Piper;PA-28-140/161, Archer, Cherokee;Cherokee Archer;Landplane;L;1.1;10.7;Light;65;700
 P28R;Piper;Aicsa PA-28R, Cherokee Arrow, Turbo Arror;Cherokee Arrow;Landplane;L;1.13;9.1;Light;70;1000
-P28T;Piper;PA-28RT, Turbo Arrow;Turbo Arrow 4;Landplane;L;1.32;10.8;Light;70;1100
+P28T;Piper;PA-28RT, Turbo Arrow;Turbo Arrow;Landplane;L;1.32;10.8;Light;70;1100
 P3;Lockheed;Orion;Orion;Landplane;M;61.325;30.37;Lower Medium;130;1500
 P32R;Piper;PA-32R, Lance, Turbo Saratoga SP;Cherokee Lance;Landplane;L;1.64;11;Light;75;1000
 P46T;Piper;Malibu Meridian;Malibu Meridian;Landplane;L;2.2;13.1;Light;75;1400
