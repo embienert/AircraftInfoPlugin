@@ -16,6 +16,7 @@ A320;Airbus;A320;A320;Landplane;M;73.9;34.1;Upper Medium;137;2500
 A321;Airbus;A321;A321;Landplane;M;83;34.1;Upper Medium;141;2500
 A332;Airbus;A330-200;A330-200;Landplane;H;230;60.3;Upper Heavy;140;2000
 A333;Airbus;A330-300;A330-300;Landplane;H;230;60.3;Upper Heavy;140;2000
+A337;Airbus;A330-700 Beluga;Beluga XL;Landplane;H;227;60.3;-;-;-
 A338;Airbus;A330-800;A330-800;Landplane;H;251;64;Upper Heavy;140;2000
 A339;Airbus;A330-900;A330-900;Landplane;H;251;64;Upper Heavy;140;2000
 A342;Airbus;A340-200;A340-200;Landplane;H;275;60.3;Upper Heavy;150;1500
@@ -339,6 +340,7 @@ P46T;Piper;Malibu Meridian;Malibu Meridian;Landplane;L;2.2;13.1;Light;75;1400
 P808;Piaggio;PD-808;PD-808;Landplane;M;8.17;13.2;Light;105;5000
 PA18;Piper;L-18C;Super Cub;Landplane;L;0.68;10.7;Light;45;1000
 PA23;Piper;Apache;Apache;Landplane;L;2.177;11.34;Light;85;2200
+PA24;Piper;Comanche;Comanche;Landplane;L;1.451;10.97;-;-;-
 PA27;Piper;Aztec;Aztec;Landplane;L;2.36;11.4;Light;70;1500
 PA31;Piper;Chieftain;Chieftain;Landplane;L;2.95;12.4;Light;90;1200
 PA32;Piper;Cherokee Six;Cherokee Six;Landplane;L;1.64;10;Light;80;1100
