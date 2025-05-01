@@ -23,4 +23,5 @@ All commands start with the prefix `.aip`, for **A**ircraft **I**nformation **P*
 | `.aip hide`          | Hide the aircraft info list, if shown                                            |
 | `.aip reload`        | Reload the aircraft database file                                                |
 | `.aip lookup [ICAO]` | Look up and show the available information for aircraft with the given ICAO code |
+| `.aip search [text]` | Search by ICAO, manufacturer or date. Limited support for partial matches        |
 
