@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 #include <exception>
+#include <iomanip>
 
 using namespace std;
 
@@ -383,7 +384,12 @@ bool CAircraftInfoPlugin::OnCompileCommand(const char* sCommandLine) {
 				sendMessage("Found " + to_string(matches.size()) + " potential matches: ");
 				
 				for(map<string, string> match : matches) {
-					sendMessage(AircraftData::getIcao(match) + "    | " + AircraftData::getManufacturer(match) + "    | " + AircraftData::getName(match));
+					ostringstream oss;
+					oss << left << setw(4) << AircraftData::getIcao(match) << "    "
+						<< left << setw(20) << AircraftData::getManufacturer(match) << "    "
+						<< AircraftData::getName(match);
+
+					sendMessage(oss.str());
 				}
 			}
 		}

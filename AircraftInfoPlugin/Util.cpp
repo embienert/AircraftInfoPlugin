@@ -9,7 +9,7 @@ using namespace std;
 
 string Util::toUpper(string s) {
     string result(s);
-    transform(s.begin(), s.end(), s.begin(), ::toupper);
+    transform(result.begin(), result.end(), result.begin(), ::toupper);
     return result;
 }
 
@@ -18,7 +18,7 @@ double Util::StringEquality(const string& originalCased, const string& otherCase
     auto original = toUpper(originalCased);
     auto other = toUpper(otherCased);
 
-    if (original.find(other) != string::npos || other.find(original) != string::npos) return 1;
+    if (original.find(other) != string::npos || other.find(original) != string::npos) return 1.0;
 
     size_t len1 = original.size();
     size_t len2 = other.size();
