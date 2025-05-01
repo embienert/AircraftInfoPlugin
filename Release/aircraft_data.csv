@@ -52,7 +52,7 @@ AN38;Antonov;An-38;Antonov An-38;Landplane;M;8.8;22.1;Light;120;1000
 AN70;Antonov;An-70;Antonov An-70;Landplane;M;130;44.1;Lower Heavy;140;1500
 An72;Antonov;An-72/74;Antonov An-72;Landplane;M;34.5;31.9;Lower Medium;100;2500
 AS32;Eurocopter;Super Puma;Super Puma;Helicopter;M;9.35;16.2;Light;40;1500
-ASTR;Israel Aerospace Industries;Gulfstream G100;Gulfstream G100;Landplane;M;11.18;16.1;Light;120;3000
+ASTR;Israel Aerospace Industries;Gulfstream 100;Gulfstream-100;Landplane;M;11.18;16.1;Light;120;3000
 AT43;ATR;Alenia ATR-42-300/320;ATR-42-300;Landplane;M;16.7;24.6;Lower Medium;120;1000
 AT44;ATR;ATR-42-400;ATR-42-400;Landplane;M;17.9;24.6;Lower Medium;120;1900
 AT45;ATR;Alenia ATR-42-500;ATR-42-500;Landplane;M;18.6;24.6;Lower Medium;110;1500
