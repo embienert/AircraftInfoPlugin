@@ -351,17 +351,17 @@ bool CAircraftInfoPlugin::OnCompileCommand(const char* sCommandLine) {
 			return true;
 		}
 
-		string icao = cmd.substr(7);
+		string lookupText = cmd.substr(7);
 		try {
 			transform(cmd.begin(), cmd.end(), cmd.begin(), ::toupper);
 		} catch (...) {
 			return false;
 		}
 
-		auto info = AircraftData::lookupIcao(icao);
+		auto info = AircraftData::lookupIcao(lookupText);
 		string gotIcao = AircraftData::getIcao(info);
 
-		if (icao == gotIcao) {
+		if (lookupText == gotIcao) {
 			sendMessage("--------------------------");
 			sendMessage("ICAO:     " + gotIcao);
 			sendMessage("WTC:      " + AircraftData::getWtc(info));
@@ -375,7 +375,17 @@ bool CAircraftInfoPlugin::OnCompileCommand(const char* sCommandLine) {
 			sendMessage("Name:     " + AircraftData::getShortName(info));
 			sendMessage("--------------------------");
 		} else {
-			sendMessage("Could not find entry for ICAO '" + icao + "'");
+			// Could not find exact match for ICAO -> Look for partial matches in ICAO and names
+			sendMessage("Could not find exact match for ICAO '" + lookupText + "'");
+			auto matches = AircraftData::lookupAny(lookupText);
+
+			if (!matches.empty()) {
+				sendMessage("Found " + to_string(matches.size()) + " potential matches: ");
+				
+				for(map<string, string> match : matches) {
+					sendMessage(AircraftData::getIcao(match) + "    | " + AircraftData::getManufacturer(match) + "    | " + AircraftData::getName(match));
+				}
+			}
 		}
 		
 		return true;
