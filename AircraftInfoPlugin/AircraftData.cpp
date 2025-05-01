@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "AircraftData.h"
 #include "CAircraftInfoPlugin.h"
+#include "Util.h"
 #include <fstream>
 #include <sstream>
 #include <filesystem>
@@ -168,6 +169,35 @@ map<string, string> AircraftData::lookupIcao(string icao) {
 	}
 
 	return invalidDefault();
+}
+
+vector<map<string, string>> AircraftData::lookupAny(string lookupText) {
+	if (!hasData) {
+		hasData = loadData();
+
+		if (!hasData) return vector<map<string, string>>();
+	}
+
+	const double ICAO_MATCH_CUTOFF = 0.7;
+	const double NAME_MATCH_CUTOFF = 0.8;
+	const double SHORT_NAME_MATCH_CUTOFF = 0.8;
+	const double MANUFACTURER_MATCH_CUTOFF = 0.7;
+
+	auto matches = vector<map<string, string>>();
+	for (auto it = data.begin(); it != data.end(); it++) {
+		auto& data = it->second;
+		if (Util::StringEquality(getIcao(data), lookupText) >= ICAO_MATCH_CUTOFF) {
+			matches.push_back(data);
+		} else if (Util::StringEquality(getName(data), lookupText) >= NAME_MATCH_CUTOFF) {
+			matches.push_back(data);
+		} else if (Util::StringEquality(getShortName(data), lookupText) >= SHORT_NAME_MATCH_CUTOFF) {
+			matches.push_back(data);
+		} else if (Util::StringEquality(getManufacturer(data), lookupText) >= MANUFACTURER_MATCH_CUTOFF) {
+			matches.push_back(data);
+		}
+	}
+
+	return matches;
 }
 
 map<string, string> AircraftData::invalidDefault() {

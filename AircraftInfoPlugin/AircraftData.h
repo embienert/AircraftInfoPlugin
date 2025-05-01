@@ -9,6 +9,7 @@ using namespace std;
 static class AircraftData {
 public:
 	static map<string, string> lookupIcao(string icao);
+	static vector<map<string, string>> lookupAny(string lookupText);
 
 	// Column definitions
 	static string cIcao;

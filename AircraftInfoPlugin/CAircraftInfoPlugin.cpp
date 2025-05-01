@@ -4,12 +4,13 @@
 #include <string>
 #include <sstream>
 #include <exception>
+#include <iomanip>
 
 using namespace std;
 
 
 const char* PLUGIN_NAME			= "Aircraft Info Plugin";
-const char* PLUGIN_VERSION		= "1.6";
+const char* PLUGIN_VERSION		= "1.7";
 const char* PLUGIN_AUTHOR		= "Martin Bienert";
 const char* PLUGIN_COPYRIGHT	= "Free to be distributed as source code";
 
@@ -347,21 +348,21 @@ bool CAircraftInfoPlugin::OnCompileCommand(const char* sCommandLine) {
 
 	if (strncmp(cmd.c_str(), "LOOKUP", 6) == 0) {
 		if (strlen(cmd.c_str()) < 8) {
-			sendMessage("lookup needs an aircraft ICAO");
+			sendMessage("LOOKUP needs an aircraft ICAO");
 			return true;
 		}
 
-		string icao = cmd.substr(7);
+		string lookupText = cmd.substr(7);
 		try {
 			transform(cmd.begin(), cmd.end(), cmd.begin(), ::toupper);
 		} catch (...) {
 			return false;
 		}
 
-		auto info = AircraftData::lookupIcao(icao);
+		auto info = AircraftData::lookupIcao(lookupText);
 		string gotIcao = AircraftData::getIcao(info);
 
-		if (icao == gotIcao) {
+		if (lookupText == gotIcao) {
 			sendMessage("--------------------------");
 			sendMessage("ICAO:     " + gotIcao);
 			sendMessage("WTC:      " + AircraftData::getWtc(info));
@@ -375,9 +376,53 @@ bool CAircraftInfoPlugin::OnCompileCommand(const char* sCommandLine) {
 			sendMessage("Name:     " + AircraftData::getShortName(info));
 			sendMessage("--------------------------");
 		} else {
-			sendMessage("Could not find entry for ICAO '" + icao + "'");
+			// Could not find exact match for ICAO -> Look for partial matches in ICAO and names
+			sendMessage("Could not find an exact match for ICAO '" + lookupText + "'");
+
+			auto matches = AircraftData::lookupAny(lookupText);
+
+			if (!matches.empty()) {
+				sendMessage("Found " + to_string(matches.size()) + " similar entries: ");
+
+				for (map<string, string> match : matches) {
+					ostringstream oss;
+					oss << left << setw(4) << AircraftData::getIcao(match) << "    "
+						<< left << setw(20) << AircraftData::getManufacturer(match) << "    "
+						<< AircraftData::getName(match);
+
+					sendMessage(oss.str());
+				}
+			}
 		}
 		
+		return true;
+	}
+
+	if (strncmp(cmd.c_str(), "SEARCH", 6) == 0) {
+		if (strlen(cmd.c_str()) < 8) {
+			sendMessage("SEARCH needs an argument");
+			return true;
+		}
+
+		string lookupText = cmd.substr(7);
+
+		auto matches = AircraftData::lookupAny(lookupText);
+
+		if (matches.empty()) {
+			sendMessage("No matches found");
+		} else {
+			sendMessage("Found " + to_string(matches.size()) + " potential matches: ");
+
+			for (map<string, string> match : matches) {
+				ostringstream oss;
+				oss << left << setw(4) << AircraftData::getIcao(match) << "    "
+					<< left << setw(20) << AircraftData::getManufacturer(match) << "    "
+					<< AircraftData::getName(match);
+
+				sendMessage(oss.str());
+			}
+		}
+
 		return true;
 	}
 
