@@ -348,7 +348,7 @@ bool CAircraftInfoPlugin::OnCompileCommand(const char* sCommandLine) {
 
 	if (strncmp(cmd.c_str(), "LOOKUP", 6) == 0) {
 		if (strlen(cmd.c_str()) < 8) {
-			sendMessage("lookup needs an aircraft ICAO");
+			sendMessage("LOOKUP needs an aircraft ICAO");
 			return true;
 		}
 
@@ -377,13 +377,14 @@ bool CAircraftInfoPlugin::OnCompileCommand(const char* sCommandLine) {
 			sendMessage("--------------------------");
 		} else {
 			// Could not find exact match for ICAO -> Look for partial matches in ICAO and names
-			sendMessage("Could not find exact match for ICAO '" + lookupText + "'");
+			sendMessage("Could not find an exact match for ICAO '" + lookupText + "'");
+
 			auto matches = AircraftData::lookupAny(lookupText);
 
 			if (!matches.empty()) {
-				sendMessage("Found " + to_string(matches.size()) + " potential matches: ");
-				
-				for(map<string, string> match : matches) {
+				sendMessage("Found " + to_string(matches.size()) + " similar entries: ");
+
+				for (map<string, string> match : matches) {
 					ostringstream oss;
 					oss << left << setw(4) << AircraftData::getIcao(match) << "    "
 						<< left << setw(20) << AircraftData::getManufacturer(match) << "    "
@@ -394,6 +395,34 @@ bool CAircraftInfoPlugin::OnCompileCommand(const char* sCommandLine) {
 			}
 		}
 		
+		return true;
+	}
+
+	if (strncmp(cmd.c_str(), "SEARCH", 6) == 0) {
+		if (strlen(cmd.c_str()) < 8) {
+			sendMessage("SEARCH needs an argument");
+			return true;
+		}
+
+		string lookupText = cmd.substr(7);
+
+		auto matches = AircraftData::lookupAny(lookupText);
+
+		if (matches.empty()) {
+			sendMessage("No matches found");
+		} else {
+			sendMessage("Found " + to_string(matches.size()) + " potential matches: ");
+
+			for (map<string, string> match : matches) {
+				ostringstream oss;
+				oss << left << setw(4) << AircraftData::getIcao(match) << "    "
+					<< left << setw(20) << AircraftData::getManufacturer(match) << "    "
+					<< AircraftData::getName(match);
+
+				sendMessage(oss.str());
+			}
+		}
+
 		return true;
 	}
 
