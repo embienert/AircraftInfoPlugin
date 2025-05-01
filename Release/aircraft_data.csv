@@ -58,6 +58,7 @@ AT44;ATR;ATR-42-400;ATR-42-400;Landplane;M;17.9;24.6;Lower Medium;120;1900
 AT45;ATR;Alenia ATR-42-500;ATR-42-500;Landplane;M;18.6;24.6;Lower Medium;110;1500
 AT72;ATR;ALenia ATR-72;ATR-72;Landplane;M;21.5;27.1;Lower Medium;120;1500
 AT75;ATR;ATR-72-500;ATR-72-500;Landplane;M;23;27.05;Lower Medium;120;1350
+AT76;ATR;ATR-72.600;ATR-72-600;Landplane;M;22.8;27.05;-;-;-
 ATLA;Breguet;1150 Atlantic;Atlantic;Landplane;M;43.5;36.3;Upper Medium;130;2000
 ATP;British Aerospace;ATP;ATP;Landplane;M;22.93;30.6;Lower Medium;105;1000
 B06;Bell;Bell JetRanger;JetRanger;Helicopter;L;1.451;10.16;Light;40;1350
