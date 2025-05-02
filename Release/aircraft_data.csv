@@ -400,6 +400,7 @@ TAMP;Socata;TB-9, Tampico, Sprint;TB-9;Landplane;L;1.06;9.9;Light;65;600
 TB30;Aerospatiale;TB-30, Epsilon;Epsilon;Landplane;L;1.25;7.9;Light;80;1800
 TBM7;Socata;TBM-700;TBM-700;Landplane;L;3;12.2;Light;80;2000
 TBM8;Socata;TBM-800;TBM-800;Landplane;L;3.353;12.2;Light;95;2400
+TBM9;Socata;TBM-900;TBM-900;Landplane;L;3.354;12.8;-;-;-
 TOBA;Socata;TB-10/200, Tobago;Tobago;Landplane;L;1.15;9.9;Light;65;600
 TOR;Panavia;Tornado;Tornado;Landplane;M;28;13.9;Lower Medium;145;15000
 TRIN;Socata;Pashosh;Pashosh;Landplane;L;1.4;10;Light;70;1200
